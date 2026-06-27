@@ -13,6 +13,7 @@ const auditRoutes = require('./routes/audit.routes.js');
 const notificationsRoutes = require('./routes/notifications.routes.js');
 
 const { initWebSocket } = require('./sockets/index.js');
+const { startExpirationMonitor } = require('./jobs/expirationMonitor');
 
 const app = express();
 
@@ -55,4 +56,5 @@ server.listen(PORT, () => {
   console.log("YAB Chemicals server running on port " + PORT);
   console.log("Environment: " + process.env.NODE_ENV);
   console.log("WebSocket server initialized");
+  startExpirationMonitor();
 });
